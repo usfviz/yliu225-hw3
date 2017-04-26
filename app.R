@@ -1,4 +1,4 @@
-setwd("~/MSAN/SpringModule2/622Visual/yliu225-hw3")
+# setwd("~/MSAN/SpringModule2/622Visual/yliu225-hw3")
 
 library(dplyr)
 library(ggvis)
