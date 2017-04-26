@@ -4,6 +4,8 @@ library(dplyr)
 library(ggvis)
 library(shiny)
 library(ggplot2)
+library(plotly)
+library(GGally)
 
 # fb <- read.table("dataset_Facebook.csv", sep = ";", header = TRUE)
 # diabetic <- read.csv("diabetic_data.csv")
