@@ -1,4 +1,4 @@
-setwd("~/MSAN/SpringModule2/622Visual/yliu225-hw2/hw3/")
+setwd("~/MSAN/SpringModule2/622Visual/yliu225-hw3")
 
 library(dplyr)
 library(ggvis)
@@ -42,9 +42,15 @@ ui <- fluidPage(
   ),
   
   mainPanel(
-    uiOutput("ggvis_ui"),
-    ggvisOutput("ggvis")
-  )
+    
+    tabsetPanel(
+                tabPanel("Bubble Plot", uiOutput("ggvis_ui"),
+                ggvisOutput("ggvis")),
+                tabPanel("Parallel Coordinate Plot", plotlyOutput("parallel_plot")),
+                tabPanel("Scatterplot Matrix", plotlyOutput("scatter_plot"))
+                )
+  
+    )
 )
 
 
@@ -107,6 +113,25 @@ server <- function(input, output) {
          add_legend(c("fill")) %>%
          bind_shiny("ggvis", "ggvis_ui")
   
+  
+  diabetic <- read.csv("df_bubble.csv")
+  
+  output$parallel_plot <- renderPlotly({
+         ggplotly(ggparcoord(diabetic, columns = 2:4, groupColumn = 1))
+    
+  
+    
+  })
+  
+  
+  fb <- read.csv("dataset_Facebook.csv", sep = ";", header = TRUE)
+  
+  fb <- fb[, c("Lifetime.Engaged.Users", "comment", "like", "share")]
+  
+  output$scatter_plot <- renderPlotly({
+                  ggplotly(ggpairs(fb, colour='cut'))
+    
+  })
   
 }
 
