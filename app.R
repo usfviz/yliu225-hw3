@@ -7,6 +7,18 @@ library(ggplot2)
 library(plotly)
 library(GGally)
 
+if(!require(dplyr)){
+  install.packages("dplyr")
+  library(dplyr)
+}
+
+if(!require(ggvis)){
+  install.packages("ggvis")
+  library(ggvis)
+}
+
+
+
 # fb <- read.table("dataset_Facebook.csv", sep = ";", header = TRUE)
 # diabetic <- read.csv("diabetic_data.csv")
 
